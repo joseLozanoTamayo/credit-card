@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { CoreService } from 'src/app/core/services/core.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MyErrorStateMatcher } from 'src/app/shared/commons/error-state-matcher';
-import { FinancialModel, UserModel } from '../user-model';
+import { InformacionLaboralModel, ClienteModel } from '../credit-card-model';
 
 @Component({
   selector: 'app-users-financial',
@@ -12,7 +12,7 @@ import { FinancialModel, UserModel } from '../user-model';
 export class FinancialComponent implements OnInit {
 
   public rsFormGroup: FormGroup; // form
-  financialModel: FinancialModel;
+  financialModel: InformacionLaboralModel;
 
   @Output() completed = new EventEmitter<boolean>();
   @Output() canceled = new EventEmitter<boolean>();
@@ -51,11 +51,11 @@ export class FinancialComponent implements OnInit {
         (res: any) => {
           if ( res && typeof res !== 'string' && res.length !== 0 ) {
             this.financialModel = res[0];
-            const { Occupation, Profession, Incomes } = this.financialModel;
+            const { ocupacionLaboral, profesion, ingresos } = this.financialModel;
             this.rsFormGroup.setValue({
-              Occupation,
-              Profession,
-              Incomes
+              ocupacionLaboral,
+              profesion,
+              ingresos
             });
             this.completed.emit(true);
           }
@@ -67,11 +67,11 @@ export class FinancialComponent implements OnInit {
   }
 
   newModel() {
-    if (!this.financialModel || this.financialModel.Id != null) {
-      this.financialModel = new FinancialModel();
-      this.financialModel.IdUsers = {
-              ...new UserModel(),
-              Id: this.user,
+    if (!this.financialModel || this.financialModel.id != null) {
+      this.financialModel = new InformacionLaboralModel();
+      this.financialModel.idCliente = {
+              ...new ClienteModel(),
+              id: this.user,
             };
       this.rsFormGroup.reset();
     }
@@ -83,7 +83,7 @@ export class FinancialComponent implements OnInit {
 
    this.financialModel = { ...this.financialModel, ...this.rsFormGroup.value };
 
-   if (this.financialModel.Id != null) {
+   if (this.financialModel.id != null) {
     this.coreService.put('financial_information', this.financialModel).subscribe(
       res => {
         // console.log(res);

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { UserModel } from '../credit-card-model';
+import { ClienteModel } from '../credit-card-model';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { CoreService } from 'src/app/core/services/core.service';
@@ -21,16 +21,16 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 export class ListComponent implements OnInit {
 
   displayedColumns: string[] = ['Document', 'Names', 'LastName', 'SecondLastName', 'Email'];
-  dataSource: MatTableDataSource<UserModel>;
+  dataSource: MatTableDataSource<ClienteModel>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
   @Output() new = new EventEmitter<boolean>();
 
-  @Output() edit = new EventEmitter<UserModel>();
+  @Output() edit = new EventEmitter<ClienteModel>();
 
-  expandedElement: UserModel;
+  expandedElement: ClienteModel;
 
   constructor(private coreService: CoreService ) {}
 

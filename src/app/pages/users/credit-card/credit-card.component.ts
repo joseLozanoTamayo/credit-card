@@ -2,7 +2,7 @@ import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { CoreService } from 'src/app/core/services/core.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MyErrorStateMatcher } from 'src/app/shared/commons/error-state-matcher';
-import { CardModel, UserModel } from '../user-model';
+import { InformacionTarjetaModel, ClienteModel } from '../credit-card-model';
 
 @Component({
   selector: 'app-users-credit-card',
@@ -13,7 +13,7 @@ export class CreditCardComponent implements OnInit {
 
   public rsFormGroup: FormGroup; // form
 
-  cardModel: CardModel;
+  cardModel: InformacionTarjetaModel;
 
   @Output() completed = new EventEmitter<boolean>();
   @Output() canceled = new EventEmitter<boolean>();
@@ -49,10 +49,10 @@ export class CreditCardComponent implements OnInit {
         (res: any) => {
           if ( res && typeof res !== 'string' && res.length !== 0 ) {
             this.cardModel = res[0];
-            const { Type, PayDay } = this.cardModel;
+            const { tipo, diaPago } = this.cardModel;
             this.rsFormGroup.setValue({
-              Type,
-              PayDay
+              tipo,
+              diaPago
             });
           }
         }
@@ -63,11 +63,11 @@ export class CreditCardComponent implements OnInit {
   }
 
   newModel() {
-    if (!this.cardModel || this.cardModel.Id != null) {
-      this.cardModel = new CardModel();
+    if (!this.cardModel || this.cardModel.id != null) {
+      this.cardModel = new InformacionTarjetaModel();
       this.cardModel.IdUsers = {
-                ...new UserModel(),
-                Id: this.user,
+                ...new ClienteModel(),
+                id: this.user,
               };
       this.rsFormGroup.reset();
     }
@@ -79,7 +79,7 @@ export class CreditCardComponent implements OnInit {
 
    this.cardModel = { ...this.cardModel, ...this.rsFormGroup.value };
 
-   if (this.cardModel.Id != null) {
+   if (this.cardModel.id != null) {
     this.coreService.put('credit_cards', this.cardModel).subscribe(
       res => {
         // console.log(res);

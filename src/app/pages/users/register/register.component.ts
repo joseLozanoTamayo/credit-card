@@ -2,7 +2,7 @@ import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { CoreService } from 'src/app/core/services/core.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MyErrorStateMatcher } from 'src/app/shared/commons/error-state-matcher';
-import { UserModel } from '../credit-card-model';
+import { ClienteModel } from '../credit-card-model';
 
 @Component({
   selector: 'app-users-register',
@@ -13,7 +13,7 @@ export class RegisterComponent implements OnInit {
 
   rsFormGroup: FormGroup;
   matcher = new MyErrorStateMatcher();
-  userModel: UserModel;
+  userModel: ClienteModel;
 
   @Output() completed = new EventEmitter<boolean>();
   @Output() canceled = new EventEmitter<boolean>();
@@ -54,8 +54,8 @@ export class RegisterComponent implements OnInit {
 
   setModel() {
 
-    if (!this.userModel.Id) {
-      this.userModel = new UserModel();
+    if (!this.userModel.id) {
+      this.userModel = new ClienteModel();
       this.rsFormGroup.reset();
     } else {
       this.rsFormGroup.setValue(this.userModel);
@@ -67,7 +67,7 @@ export class RegisterComponent implements OnInit {
   this.completed.emit(true);
   this.userModel = this.rsFormGroup.value;
 
-  if (this.userModel.Id !== null) {
+  if (this.userModel.id !== null) {
     this.coreService.put('users', this.userModel).subscribe(
       res => {
 

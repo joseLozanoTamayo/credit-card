@@ -3,7 +3,7 @@ import { MatHorizontalStepper } from '@angular/material/stepper';
 import { FormGroup } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { ListComponent } from './list/list.component';
-import { UserModel, FinancialModel } from './user-model';
+import { ClienteModel, InformacionLaboralModel } from './credit-card-model';
 import { FinancialComponent } from './financial/financial.component';
 
 @Component({
@@ -45,16 +45,16 @@ export class UsersComponent implements OnInit {
     this.registerEnds = $event;
     this.list.getUsers();
     this.stepper.next();
-    this.userID = this.register.userModel.Id;
-    this.financial.user = this.register.userModel.Id;
+    this.userID = this.register.userModel.id;
+    this.financial.user = this.register.userModel.id;
     this.financial.newModel();
   }
 
   completedFinancials($event) {
     this.financialEnds = $event;
     this.stepper.next();
-    this.userID = this.register.userModel.Id;
-    this.creditCard.user = this.register.userModel.Id;
+    this.userID = this.register.userModel.id;
+    this.creditCard.user = this.register.userModel.id;
     this.creditCard.newModel();
   }
 
@@ -64,8 +64,8 @@ export class UsersComponent implements OnInit {
   }
 
   newReg() {
-    this.register.userModel = new UserModel();
-    this.financial.financialModel = new FinancialModel();
+    this.register.userModel = new ClienteModel();
+    this.financial.financialModel = new InformacionLaboralModel();
     this.userID = null;
     this.financial.setModel();
     this.register.setModel();
