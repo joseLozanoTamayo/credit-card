@@ -48,4 +48,4 @@ Thumbs.db
 
 # Firebase
 .Firebase
-/src/environments
+#/src/environments

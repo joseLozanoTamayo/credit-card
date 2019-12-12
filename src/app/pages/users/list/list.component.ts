@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { UserModel } from '../user-model';
+import { UserModel } from '../credit-card-model';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { CoreService } from 'src/app/core/services/core.service';
