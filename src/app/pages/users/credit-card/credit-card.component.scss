@@ -1,0 +1,15 @@
+
+.container-card {
+  .e-full-width {
+    width: 100%;
+  }
+  &.credit-card {
+    margin: 10rem;
+    h1 {
+      color: #673ab7;
+    }
+    h2 {
+      text-align: end;
+    }
+  }
+}

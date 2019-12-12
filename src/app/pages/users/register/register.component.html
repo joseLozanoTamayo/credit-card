@@ -1,0 +1,87 @@
+<mat-card class="container-register">
+  <form [formGroup]="rsFormGroup" class="form" (ngSubmit)="submit()" validate>
+    <mat-card-header>
+      <mat-card-title>Registro de usuario</mat-card-title>
+      <mat-card-subtitle>Datos generales</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+
+
+      <mat-form-field class="e-full-width">
+        <input matInput placeholder="Nombres" [formControl]="rsFormGroup.controls['Names']"
+          [errorStateMatcher]="matcher">
+        <mat-error>
+          Please enter a valid data
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="e-full-width">
+        <input matInput placeholder="Primer Apellido" [formControl]="rsFormGroup.controls['LastName']"
+          [errorStateMatcher]="matcher">
+        <mat-error>
+          Please enter a valid data
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="e-full-width">
+        <input matInput placeholder="Segundo Apellido" [formControl]="rsFormGroup.controls['SecondLastName']"
+          [errorStateMatcher]="matcher">
+        <mat-error>
+          Please enter a valid data
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="e-full-width">
+        <input matInput placeholder="Documento" [formControl]="rsFormGroup.controls['Document']"
+          [errorStateMatcher]="matcher">
+        <mat-error>
+          Please enter a valid data
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="e-full-width">
+        <input matInput [matDatepicker]="picker" placeholder="Fecha Nacimiento"
+          [formControl]="rsFormGroup.controls['Birthday']">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error>
+          Please enter a valid data
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="e-full-width">
+        <input matInput placeholder="Celular" [formControl]="rsFormGroup.controls['Phone']"
+          [errorStateMatcher]="matcher">
+        <mat-error>
+          Please enter a valid data
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="e-full-width">
+        <input matInput placeholder="Dirección" [formControl]="rsFormGroup.controls['Address']"
+          [errorStateMatcher]="matcher">
+        <mat-error>
+          Please enter a valid data
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="e-full-width">
+        <input matInput placeholder="Correo" [formControl]="rsFormGroup.controls['Email']"
+          [errorStateMatcher]="matcher">
+        <mat-error>
+          Please enter a valid data
+        </mat-error>
+      </mat-form-field>
+
+
+
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" [disabled]="!rsFormGroup.valid" type="submit">CONFIRMAR</button>
+      <button mat-raised-button color="primary"  (click)="cancel()">CANCELAR</button>
+    </mat-card-actions>
+
+
+  </form>
+</mat-card>

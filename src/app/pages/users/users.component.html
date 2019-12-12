@@ -1,0 +1,24 @@
+
+<div class="container-list-users" [hidden]="registerForm">
+  <app-users-list #list (new)="registerForm = $event; newReg()" (edit)="edit($event); registerForm = true"></app-users-list>
+</div>
+
+<div class="container-user" [hidden]="!registerForm">
+  <mat-horizontal-stepper linear #stepper>
+    <mat-step [completed]="registerEnds">
+      <ng-template matStepLabel>Registro Usuario </ng-template>
+      <app-users-register #register (completed)="completedRegister($event)" (canceled)="registerForm = false"></app-users-register>
+    </mat-step>
+    <mat-step [completed]="financialEnds">
+      <ng-template matStepLabel>Registro financiero</ng-template>
+      <div>
+        <app-users-financial #financial (completed)="completedFinancials($event)" [(user)]="userID" (canceled)="registerForm = false"></app-users-financial>
+      </div>
+    </mat-step>
+    <mat-step [completed]="creditCardEnds">
+      <ng-template matStepLabel>Registro tarjeta credito</ng-template>
+      <app-users-credit-card #creditCard (completed)="completedCreditCard($event)" [(user)]="userID" (canceled)="registerForm = false"></app-users-credit-card>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>
+

@@ -1,0 +1,57 @@
+<mat-card class="container-list">
+
+  <mat-card-header>
+    <mat-card-title>Listado usuarios</mat-card-title>
+    <mat-card-subtitle>resumen</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
+
+        <ng-container matColumnDef="{{column}}" *ngFor="let column of displayedColumns">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> {{column}} </th>
+          <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+        </ng-container>
+
+        <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+  <ng-container matColumnDef="expandedDetail">
+      <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+        <div class="element-detail"
+             [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+          <div class="element-description">
+            <label>Address:</label> <span> {{element.Address}}</span><br>
+            <label>Phone:</label> <span> {{element.Phone}}</span><br>
+            <label>Birthday:</label> <span> {{element.Birthday}}</span><br>
+          </div>
+          <div class="element-description">
+              <button mat-raised-button color="primary" type="button" (click)="editRegister(element)">EDITAR</button>
+            </div>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let element; columns: displayedColumns;"
+        class="element-row"
+        [class.expanded-row]="expandedElement === element"
+        (click)="expandedElement = expandedElement === element ? null : element">
+    </tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[ 10, 25, 100]"></mat-paginator>
+    </div>
+
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" type="button" (click)="newRegister()">NUEVO</button>
+  </mat-card-actions>
+
+
+
+</mat-card>

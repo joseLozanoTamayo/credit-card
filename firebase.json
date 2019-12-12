@@ -1,0 +1,20 @@
+{
+  "database": {
+    "rules": "database.rules.json"
+  },
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "hosting": {
+    "public": "dist/info-credito",
+    "ignore": [
+      "firebase.json",
+      "database.rules.json",
+      "storage.rules",
+      "functions",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

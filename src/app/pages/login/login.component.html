@@ -1,0 +1,36 @@
+<div class="e-card-title">
+        <mat-card class="card">
+            <mat-card-content class="content">
+                <mat-card-title >Credit Card</mat-card-title>
+            </mat-card-content>
+        </mat-card>
+    </div>
+<div class="e-card">
+  <mat-card class="card">
+    <mat-card-title class="mat-card-text">Ingresa en tu sistema</mat-card-title>
+    <mat-card-content class="content">
+        <form class="e-form">
+            <table class="e-full-width" cellspacing="0">
+                <tr>
+                    <td>
+                        <mat-form-field class="e-full-width">
+                            <input matInput placeholder="Username" [(ngModel)]="email" name="username" required>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field class="e-full-width">
+                            <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <!-- <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner> -->
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button (click)="signIn()" color="primary">Login</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
