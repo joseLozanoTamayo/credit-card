@@ -15,7 +15,7 @@ export const environment = {
     measurementId: 'G-Y3H940123M'
   },
   endPoints: {
-    users: 'https://info-credito.herokuapp.com/v1/'
+    users: 'http://localhost:8080/'
   }
 };
 

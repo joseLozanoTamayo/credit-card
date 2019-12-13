@@ -20,7 +20,6 @@ export class UsersComponent implements OnInit {
   registerForm: boolean;
 
   @ViewChild('stepper', {static: false}) stepper: MatHorizontalStepper;
-
   @ViewChild('list', {static: false}) list: ListComponent;
   @ViewChild('register', {static: false}) register: RegisterComponent;
   @ViewChild('financial', {static: false}) financial: FinancialComponent;

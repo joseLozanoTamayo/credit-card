@@ -39,9 +39,9 @@ export class ListComponent implements OnInit {
   }
 
   getUsers() {
-    this.coreService.get('users?limit=0').subscribe(
+    this.coreService.get('cliente/consultar/clientes').subscribe(
       (res: any) => {
-        // console.log(res);
+        console.log(res);
         const data = res ? res : [];
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.paginator = this.paginator;
